@@ -70,6 +70,11 @@
                                     <i class="fas fa-tag"></i> Tags
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.contacts' ? 'bg-secondary' : '' }}" href="{{ route('admin.contact') }}">
+                                    <i class="fas fa-address-book"></i> Contact
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </nav>

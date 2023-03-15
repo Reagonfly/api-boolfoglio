@@ -3,9 +3,10 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Admin\CategoryController as CategoryController;
+use App\Http\Controllers\Admin\ContactLeadController as ContactLeadController;
 use App\Http\Controllers\Admin\DashboardController as DashboardController;
 use App\Http\Controllers\Admin\PostController as PostController;
-use App\Http\Controllers\Admin\CategoryController as CategoryController;
 use App\Http\Controllers\Admin\TagController as TagController;
 use App\Models\Category;
 
@@ -29,6 +30,8 @@ Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(
     Route::resource('posts', PostController::class)->parameters(['posts' => 'post:slug']);
     Route::resource('/categories', CategoryController::class)->parameters(['categories' => 'category:slug']);
     Route::resource('/tags', TagController::class)->parameters(['tags' => 'tag:slug']);
+    Route::get('/contacts', [ContactLeadController::class, 'index'])->name('contact');
+    Route::post('/contacts/send_email', [ContactLeadController::class, 'send_email'])->name('send_email');
 });
 
 Route::middleware('auth')->group(function () {
